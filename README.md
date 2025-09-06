@@ -3,7 +3,8 @@ Healthcare Backend API
 A backend system for a healthcare management application, built with Node.js, Express.js, and Prisma.
 It provides a secure RESTful API for managing users, patients, doctors, and their relationships, with data stored in PostgreSQL.
 
-Features
+Features:
+
 Authentication – User registration & login with JWT and password hashing using bcryptjs.
 
 Patient Records – Full CRUD operations, scoped to authenticated users.
@@ -16,7 +17,8 @@ Validation – Input validation with Joi.
 
 Error Handling – Centralized middleware for consistent error responses.
 
-Tech Stack
+Tech Stack:
+
 Backend: Node.js, Express.js
 
 Database: PostgreSQL
