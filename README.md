@@ -1,30 +1,28 @@
 Healthcare Backend API
-This project is a robust backend system for a healthcare management application, built with Node.js, Express.js, and Prisma. It provides a secure, RESTful API for managing user authentication, patient records, doctor records, and the relationships between them. The data is stored in a PostgreSQL database.
 
-This project was developed as a Node.js implementation of the requirements outlined in the original Django-based assignment.
+A backend system for a healthcare management application, built with Node.js, Express.js, and Prisma.
+It provides a secure RESTful API for managing users, patients, doctors, and their relationships, with data stored in PostgreSQL.
 
 Features
-Secure User Authentication: User registration and login functionality using JSON Web Tokens (JWT) for secure, stateless authentication.
+Authentication: User registration & login with JWT and password hashing using bcryptjs.
 
-Patient Record Management: Authenticated users can perform full CRUD (Create, Read, Update, Delete) operations on their own patient records.
+Patient Records: Full CRUD operations, scoped to authenticated users.
 
-Doctor Record Management: Authenticated users can add, update, and delete doctor records, while all users can view the list of doctors.
+Doctor Records: Authenticated users can manage doctor records; all users can view doctors.
 
-Patient-Doctor Mapping: Functionality to assign doctors to patients and manage these relationships.
+Patient–Doctor Mapping: Assign and manage doctors for patients.
 
-Input Validation: All incoming request data is validated to ensure data integrity and prevent common errors.
+Validation: Input validation with Joi.
 
-Centralized Error Handling: A robust error-handling middleware provides consistent error responses and logging.
+Error Handling: Centralized middleware for consistent error responses.
 
-Technology Stack
+Tech Stack
 Backend: Node.js, Express.js
 
 Database: PostgreSQL
 
 ORM: Prisma
 
-Authentication: JSON Web Tokens (jsonwebtoken), bcryptjs for password hashing
+Auth: JWT, bcryptjs
 
 Validation: Joi
-
-Development: nodemon for automatic server restarts, dotenv for environment variable management
