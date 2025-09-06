@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  // Relation: A user can create many patient records
+  patients  Patient[]
+}
+
+// Patient model for patient management
+model Patient {
+  id        String    @id @default(cuid())
+  name      String
+  age       Int
+  gender    String
+  address   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  // Relation to the user who created the record
+  createdById String
+  createdBy   User   @relation(fields: [createdById], references: [id])
+
+  // Relation: A patient can be assigned to many doctors
+  doctorMappings PatientDoctorMapping[]
+}
+
+// Doctor model for doctor management
+model Doctor {
+  id             String    @id @default(cuid())
+  name           String
+  specialization String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relation: A doctor can be assigned to many patients
+  patientMappings PatientDoctorMapping[]
+}
+
+// Explicit many-to-many relation table for Patient-Doctor mappings
+model PatientDoctorMapping {
+  id        String   @id @default(cuid())
+  patientId String
+  doctorId  String
+  assignedAt DateTime @default(now())
+
+  patient   Patient  @relation(fields: [patientId], references: [id])
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+
+  @@unique([patientId, doctorId]) // Ensures a patient can't be assigned to the same doctor twice
+}
